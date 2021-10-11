@@ -1,0 +1,38 @@
+﻿.mycart {
+    /* font-size: 30px;*/
+    color: #ff0000;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    text-align: center;
+    display: block;
+     
+    /*line-height: 45px;*/
+    font-size: 18px;
+    color: #fff;
+}
+.bg-mauhong
+{
+    background-color:#ff0000;
+}
+#footer h3
+{
+    font-size:15px;
+}
+#footer ul 
+{
+    padding:0px;
+    margin:0px;
+}
+#footer ul li a
+{
+    color:white;
+    text-decoration:none;
+}
+#footer ul li
+{
+    list-style:none;
+}
+#footer{
+    color:white;
+}

@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Share/_LayoutSite.cshtml";
+}
+
+<div class="container">
+    <h2>Gio hang</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width:20px;">ID</th>
+                        <th style="width:100px">Hinh</th>
+                        <th>Ten san pham</th>
+                        <th>So luong</th>
+                        <th>Gia</th>
+                        <th>thue</th>
+                        <th>Thao tac</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>
+                            <img src="~/Public/images/giay11.jpg" class="img-fluid" />
+                        </td>
+                        <td>Giay anpha adidas</td>
+                        <td>
+                            <input name="hh" value="1" min="0" step="1" type="number" class="form-control" style="width:100px;" />
+                        </td>
+                        <td>200.000</td>
+                        <td>400.000</td>
+                        <td>
+                            <i class="fas fa-times"></i>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <button class="btn btn-info">Mua them san pham khac</button>
+
+                        </td>
+                        <td colspan="4" class="text-center">
+                            <button class="btn btn-danger">Xoa</button>
+                            <button class="btn btn-success">Cap nhat</button>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

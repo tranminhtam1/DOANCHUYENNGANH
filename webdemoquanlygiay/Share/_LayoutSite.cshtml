@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>ViewBag.Title</title>
+    @RenderSection("head", required: false)
+    <link href="~/Public/css/LayoutSite.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Public/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <section id="header" class="bg-light">
+        <div class="container py-1 ">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="~/Public/images/ada.png" class="img-fluid" />
+                </div>
+                <div class="col-md-5 col-8">
+                    <div class="nav-item d-inline-flex">
+                        <marquee width="450px"><b>ROVEL SHOES - Giày Auth - Uy tín - Chất lượng - 0333387818</b></marquee>
+                    </div>
+
+                </div>
+                <div class="col-md-1 col-4">
+                    <span class="mycart p-2 border rounded-circle bg-danger">
+                        <i class="fab fa-opencart"></i>
+                    </span>
+                </div>
+                <div class="col-md-1 col-4">
+                    <span class="mycart p-2 border rounded-circle bg-danger">
+                        <i class="fas fa-phone-alt"></i>
+                    </span>
+                </div>
+                <div class="col-md-1 col-4">
+                    <span class="mycart p-2 border rounded-circle bg-danger">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <section id="mainmenu" class="bg-mauhong">
+        @*<nav class="navbar navbar-expand-lg navbar-light bg-mauhong">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled">Disabled</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>*@
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="background-color: #363636">
+            <div class="container px-0">
+                <button class="navbar-toggler border-white border-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" style="color: #F8F8FF; margin-left: 70px" href="Url.Action(" Index","Home")"><b>TRANG CHỦ</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="Url.Action(" About","Policy")"><b>GIỚI THIỆU</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="Url.Action(" ProductPage","Product")"><b>SẢN PHẨM</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="Url.Action(" discountPage","Discount")"><b>KHUYẾN MÃI</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="Url.Action(" Blog","Blog")"><b>TIN TỨC</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #F8F8FF; margin: 0px 20px" href="Url.Action(" ContactPage","Contact")"><b>LIÊN HỆ</b></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: #F8F8FF;" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <b>CHÍNH SÁCH</b>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="Url.Action(" Policy","Policy")">Chính sách quy định chung</a></li>
+                                <li><a class="dropdown-item" href="Url.Action(" Condition","Policy")">Điều kiện bảo hành</a></li>
+                                <li><a class="dropdown-item" href="Url.Action(" Warranty","Policy")">Chính sách bảo hành</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </section>
+    <section id="maincontent"> @RenderBody() </section>
+    <section id="support" class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h5><i class="fas fa-truck-moving"></i>Miễn phí vận chuyển</h5><h6>Miễn phí vận chuyển nội thành</h6>
+                </div>
+                <div class="col">
+                    <h5><i class="fas fa-box-open"></i>Đổi trả hàng</h5><h6>Đổi trả lên tới 30 ngày</h6>
+                </div>
+                <div class="col">
+                    <h5><i class="far fa-clock"></i>Tiết kiệm thời gian </h5><h6>Mua sắm dễ hơn khi online</h6>
+                </div>
+                <div class="col">
+                    <h5><i class="far fa-comments"></i>Tư vấn trực tiếp</h5><h6>Đội ngũ tư vấn nhiệt tình</h6>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <footer>
+        
+        <div class="container-fluid" style="background-color: #111111">
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3 pt-3">
+                        <a class="nav-link active" style="color: #F8F8FF"><b>CỬA HÀNG</b></a>
+
+                        <iframe width="300"
+                                height="200"
+                                style="border:0"
+                                loading="lazy"
+                                allowfullscreen
+                                src="https://maps.google.com/maps?width=631&amp;height=665&amp;hl=en&amp;saddr=Đại Học Hutech Khu E, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh,
+                                Vietnam&amp;daddr=Đại Học Hutech Khu E, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh, Vietnam&amp;t=&amp;z=20&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                        </iframe>
+
+
+
+
+                    </div>
+                    <div class="col-md-3 pt-3">
+                        <a class="nav-link active" style="color: #F8F8FF"><b>CHÍNH SÁCH</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="Url.Action(" About","Policy")"><b>Về chúng tôi</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="Url.Action(" Policy","Policy")"><b>Chính sách quy định chung</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="Url.Action(" Condition","Policy")"><b>Điều kiện bảo hành</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="Url.Action(" Warranty","Policy")"><b>Chính sách bảo hành</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="Url.Action(" ContactPage","Contact")"><b>Liên hệ</b></a>
+                    </div>
+                    <div class="col-md-3 pt-3">
+                        <a class="nav-link active" style="color: #F8F8FF"><b>HỖ TRỢ</b></a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="tel:0989969919">Tổng đài tư vấn: 0989969919</a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="tel:0123456789">Tư vấn mua hàng: 0123456789</a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="tel:0163686839">Hỗ trợ kỹ thuật: 0163686839</a>
+                        <a class="nav-link active" style="color: #BBBBBB" href="tel:0386969056">Phản hồi, góp ý: 0386969056</a>
+
+                    </div>
+                    <div class="col-3 pt-3">
+                        <a class="nav-link active" style="color: #F8F8FF"><b>FANPAGE FACEBOOK</b></a>
+                        <div class="fb-page" data-href="https://www.facebook.com/Rovel-Shoes-105290968596083" data-tabs="timeline"
+                             data-width="300" data-height="200" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                             data-show-facepile="true">
+                            <blockquote cite="https://www.facebook.com/Rovel-Shoes-105290968596083" class="fb-xfbml-parse-ignore">
+                                <a href="https://www.facebook.com/Rovel-Shoes-105290968596083">ROVEL SHOES</a>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <center class="nav-link active"><p>&copy; @DateTime.Now.Year Copyright: THT Store</p></center>
+            </div>
+        </div>
+    </footer>
+    @*<section id="footer" class="bg-black py-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3>CHĂM SÓC KHÁCH HÀNG</h3>
+                        <ul>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h3>HƯỚNG DẪN</h3>
+                        <ul>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h3>CHÍNH SÁCH</h3>
+                        <ul>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h3>VỀ CỬA HÀNG</h3>
+                        <ul>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                            <li><a href="#">content</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+    <section id="coppyright" class="py-3 text-white bg-dark text-center">
+        ban quyen thuoc ve tam rovel
+    </section>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "105290968596083");
+        chatbox.setAttribute("attribution", "biz_inbox");
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v11.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+</body>
+</html>
