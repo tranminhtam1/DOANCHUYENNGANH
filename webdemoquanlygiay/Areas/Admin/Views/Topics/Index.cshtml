@@ -1,0 +1,76 @@
+﻿@model IEnumerable<webdemoquanlygiay.Models.Topic>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<p>
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <strong class="text-danger text-uppercase">Tất cả chủ đề</strong>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="@Url.Action("Create","Topics")" class="btn btn-sm btn-success"><i class="fas fa-plus"> Thêm </i></a>
+                    <a href="@Url.Action("Trash","Topics")" class="btn btn-sm btn-danger"><i class="fas fa-trash"> Thùng rác</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <tr>
+
+                    <th>Tên Topic</th>
+                    <th>ID</th>
+                    <th>Thao tác</th>
+
+                   
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.NameTopic</td>
+                        <td>@item.IDTopic</td>
+                        <td>
+                            <a class="btn btn-sm btn-success" href="@Url.Action("Status","Topics",new { id=item.IDTopic })"><i class="fas fa-toggle-on"></i></a>
+                            <a class="btn btn-sm btn-info" href="@Url.Action("Edit","Topics",new { id=item.IDTopic })"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","Topics",new { id=item.IDTopic })"><i class="fas fa-trash"></i></a>
+                        </td>
+                     
+                    </tr>
+
+                }
+
+            </table>
+        </div>
+    </div>
+
+
+    @*@Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameTopic)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameTopic)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDTopic }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDTopic }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDTopic })
+        </td>
+    </tr>
+}
+
+</table>*@

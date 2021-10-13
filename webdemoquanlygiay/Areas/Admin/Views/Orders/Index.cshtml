@@ -1,0 +1,64 @@
+﻿@model IEnumerable<webdemoquanlygiay.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.fullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reduceMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateCreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateArrive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.fullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reduceMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateCreate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateArrive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.orderID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.orderID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.orderID })
+        </td>
+    </tr>
+}
+
+</table>
