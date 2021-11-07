@@ -1,9 +1,17 @@
-﻿
-@{
-    ViewBag.Title = "web giay";
-    Layout = "~/Share/_LayoutSite.cshtml";
-}
+﻿@using webdemoquanlygiay.Models
+@using System.Globalization
+@using PagedList.Mvc;
+@*@model IEnumerable<webdemoquanlygiay.Models.Product>*@
+@model PagedList.IPagedList<Product>
 
+@{ ViewBag.Title = "web giay";
+    Layout = "~/Share/_LayoutSite.cshtml"; }
+
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -25,75 +33,78 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<div class="container">
-    <div class=" row mt-3">
-        <div class="col-md-8">
-            <div class="bg-danger" style="height:255px;"><img src="~/Public/images/b1.png" class="img-fluid"  /></div>
+<div class="container my-3">
+    <div class=" row">
+        <div class="col-md-8 mb-4 category-image">
+            <div><img src="~/Public/images/b1.png" class="img-fluid" style="width:830px;" /></div>
         </div>
-        <div class="col-md-4 ">
-            <div class="bg-info" style="height: 255px; "><img src="~/Public/images/b2.png" class="img-fluid" /></div>
+        <div class="col-md-4 mb-4 category-image ">
+            <div><img src="~/Public/images/b2.png" class="img-fluid" /></div>
+        </div>
+        <div class="col-md-4 mb-3 category-image ">
+            <div><img src="~/Public/images/b3.png" class="img-fluid" /></div>
+        </div>
+        <div class="col-md-4 mb-3 category-image">
+            <div><img src="~/Public/images/b4.png" class="img-fluid" /></div>
+        </div>
+        <div class="col-md-4 mb-3 category-image ">
+            <div><img src="~/Public/images/b5.png" class="img-fluid" /></div>
         </div>
     </div>
 </div>
-<div class="container mt-3">
+
+<div class="container mb-3 border border-1 shadow rounded rounded-3">
     <div class="row">
-        <div class="col-md-4 ">
-            <div class="bg-danger" style="height: 255px; "><img src="~/Public/images/b3.png" class="img-fluid" /></div>
+        <h2 class="text-center my-3">SẢN PHẨM BÁN CHẠY</h2>
+        <hr />
+        <div class="container mb-3 ">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+    <div class="col-md-3 col-12">
+        <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
+            <div class="card my-2">
+                <img src="@Url.Content(item.image)" class="card-img-top" alt="@item.image" style="width:270px; height:270px;">
+                <div class="card-body">
+                    <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
+                    <p class="card-text text-danger fw-bold float-start">
+                        @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>}
+            </div>
         </div>
-        <div class="col-md-4">
-            <div class="bg-info" style="height: 255px; "><img src="~/Public/images/b4.png" class="img-fluid" /></div>
-        </div>
-        <div class="col-md-4 ">
-            <div class="bg-danger" style="height: 255px; "><img src="~/Public/images/b5.png" class="img-fluid" /></div>
+
+        <div class="MenuPage">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
         </div>
     </div>
-    <h2 class="text-center my-3">SẢN PHẨM BÁN CHẠY</h2>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card" style="width:100%;">
-                <img src="~/Public/images/giay1.jfif" class="card-img-top img-fluid" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Giay convers</h5>
-                    <h5 class="card-title">Gia :500.000<sup>đ</sup></h5>
-
-                    <a href="#" class="btn btn-primary">Dat mua</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="width:100%;">
-                <img src="~/Public/images/giay1.jfif" class="card-img-top img-fluid" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Giay convers</h5>
-                    <h5 class="card-title">Gia :500.000<sup>đ</sup></h5>
-
-                    <a href="#" class="btn btn-primary">Dat mua</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="width:100%;">
-                <img src="~/Public/images/giay1.jfif" class="card-img-top img-fluid" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Giay convers</h5>
-                    <h5 class="card-title">Gia :500.000<sup>đ</sup></h5>
-
-                    <a href="#" class="btn btn-primary">Dat mua</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="width:100%;">
-                <img src="~/Public/images/giay1.jfif" class="card-img-top img-fluid" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Giay convers</h5>
-                    <h5 class="card-title">Gia :500.000<sup>đ</sup></h5>
-
-                    <a href="#" class="btn btn-primary">Dat mua</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
 </div>
+
+
+@* ******************* *@
+<style>
+    .MenuPage li {
+        display: inline;
+        text-align: center;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+
+        .pagination a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+</style>

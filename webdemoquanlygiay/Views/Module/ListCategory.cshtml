@@ -1,0 +1,16 @@
+﻿@model IEnumerable<webdemoquanlygiay.Models.Category>
+<div class="card mt-3" style="width:100%">
+    <div class="card-header">
+        DANH MUC LOAI
+    </div>
+    <ul class="list-group list-group-flush">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                @*<a href="~/@item.categoryName" >@item.categoryName</a>*@
+                <a href="/Site/SPTheoloaigiay/@item.categoryID">@item.categoryName</a>
+            </li>
+        }
+    </ul>
+
+</div>

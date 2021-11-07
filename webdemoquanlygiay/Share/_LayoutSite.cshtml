@@ -1,13 +1,54 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <title>ViewBag.Title</title>
-    @RenderSection("head", required: false)
     <link href="~/Public/css/LayoutSite.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Public/css/all.min.css" rel="stylesheet" />
+
+    @RenderSection("head", required: false)
+
+    <title></title>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
 </head>
 <body>
+    <div id="fb-root"></div>
+
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=3976925969082352&autoLogAppEvents=1" nonce="WejoyIci"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '3976925969082352',
+                xfbml: true,
+                version: 'v11.0'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <section id="header" class="bg-light">
         <div class="container py-1 ">
             <div class="row">
@@ -20,63 +61,17 @@
                     </div>
 
                 </div>
-                <div class="col-md-1 col-4">
-                    <span class="mycart p-2 border rounded-circle bg-danger">
-                        <i class="fab fa-opencart"></i>
-                    </span>
+                <div class="col-md-4">
+                    <div class="vuong"><a href="/Lienhe/Index"><i class="fas fa-phone-volume"></i></a></div>
+                    <div class="vuong"><a href="/Taikhoan/Dangnhap"><i class="fas fa-user"></i></a></div>
+                    <div class="vuong"><a href="/Giohang/Cart"><i class="fas fa-shopping-bag"></i></a></div>
                 </div>
-                <div class="col-md-1 col-4">
-                    <span class="mycart p-2 border rounded-circle bg-danger">
-                        <i class="fas fa-phone-alt"></i>
-                    </span>
-                </div>
-                <div class="col-md-1 col-4">
-                    <span class="mycart p-2 border rounded-circle bg-danger">
-                        <i class="fas fa-user"></i>
-                    </span>
-                </div>
-
             </div>
         </div>
 
     </section>
     <section id="mainmenu" class="bg-mauhong">
-        @*<nav class="navbar navbar-expand-lg navbar-light bg-mauhong">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
-                            </li>
-                        </ul>
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </nav>*@
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger" style="background-color: #363636">
             <div class="container px-0">
                 <button class="navbar-toggler border-white border-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,31 +81,31 @@
                     <ul class="navbar-nav">
 
                         <li class="nav-item">
-                            <a class="nav-link active" style="color: #F8F8FF; margin-left: 70px" href="Url.Action(" Index","Home")"><b>TRANG CHỦ</b></a>
+                            <a class="nav-link active" style="color: #F8F8FF; margin-left: 70px" href="/Site/Index"><b>TRANG CHỦ</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="Url.Action(" About","Policy")"><b>GIỚI THIỆU</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="/Gioithieu/About"><b>GIỚI THIỆU</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="Url.Action(" ProductPage","Product")"><b>SẢN PHẨM</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="/Site/Product"><b>SẢN PHẨM</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="Url.Action(" discountPage","Discount")"><b>KHUYẾN MÃI</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="/KhuyenMai/discountPage"><b>KHUYẾN MÃI</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="Url.Action(" Blog","Blog")"><b>TIN TỨC</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin-left: 20px" href="/Blog/Blog"><b>TIN TỨC</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #F8F8FF; margin: 0px 20px" href="Url.Action(" ContactPage","Contact")"><b>LIÊN HỆ</b></a>
+                            <a class="nav-link" style="color: #F8F8FF; margin: 0px 20px" href="/LienHe/Index"><b>LIÊN HỆ</b></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" style="color: #F8F8FF;" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <b>CHÍNH SÁCH</b>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="Url.Action(" Policy","Policy")">Chính sách quy định chung</a></li>
-                                <li><a class="dropdown-item" href="Url.Action(" Condition","Policy")">Điều kiện bảo hành</a></li>
-                                <li><a class="dropdown-item" href="Url.Action(" Warranty","Policy")">Chính sách bảo hành</a></li>
+                                <li><a class="dropdown-item" href="/Gioithieu/Policy">Chính sách quy định chung</a></li>
+                                <li><a class="dropdown-item" href="/Gioithieu/Condition">Điều kiện bảo hành</a></li>
+                                <li><a class="dropdown-item" href="/Gioithieu/Warranty">Chính sách bảo hành</a></li>
                             </ul>
                         </li>
 
@@ -142,7 +137,7 @@
         </div>
     </section>
     <footer>
-        
+
         <div class="container-fluid" style="background-color: #111111">
 
             <div class="container">
@@ -245,7 +240,17 @@
         ban quyen thuoc ve tam rovel
     </section>
 
+    <script src="~/Scripts/scripts.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Services/ckeditor/ckeditor.js"></script>
+    <link href="~/Public/css/LayoutAdmin.css" rel="stylesheet" />
+    <script src="~/Public/js/CustomerDetail.js"></script>
+    <div id="fb-root"></div>
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+    @RenderSection("scripts", required: false)
+
     <script>
         var chatbox = document.getElementById('fb-customer-chat');
         chatbox.setAttribute("page_id", "105290968596083");

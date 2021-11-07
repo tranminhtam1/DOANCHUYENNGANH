@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 using webdemoquanlygiay.Models;
 
 namespace webdemoquanlygiay.Areas.Admin.Controllers
@@ -15,10 +17,23 @@ namespace webdemoquanlygiay.Areas.Admin.Controllers
         private mydbcontext db = new mydbcontext();
 
         // GET: Admin/Products
-        public ActionResult Index()
+        private List<Product> Laygiaymoi(int count)
         {
-            var products = db.Products.Include(p => p.Brand).Include(p => p.Category);
-            return View(products.ToList());
+            return db.Products.OrderByDescending(a => a.dateCreate).Take(count).ToList();
+        }
+        public ActionResult Index(int ?page)
+        {
+            //if (Session["userID"] == null)
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
+            //var productList = db.Products.ToList();
+            //return View(productList);
+            int pageSize=10;
+            int pageNum = (page ?? 1);
+
+            var giaymoi = Laygiaymoi(15);
+            return View(giaymoi.ToPagedList(pageNum, pageSize));
         }
 
         // GET: Admin/Products/Details/5

@@ -50,7 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\LinkDAO.cs" />
+    <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="Model\Blog.cs" />
     <Compile Include="Model\Brand.cs" />
     <Compile Include="Model\Category.cs" />

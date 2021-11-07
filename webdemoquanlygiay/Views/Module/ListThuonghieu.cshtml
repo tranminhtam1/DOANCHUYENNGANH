@@ -1,0 +1,15 @@
+﻿@model IEnumerable<webdemoquanlygiay.Models.Brand>
+<div class="card mt-3" style="width:100%">
+    <div class="card-header">
+        DANH MUC THUONG HIEU
+    </div>
+    <ul class="list-group list-group-flush">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                <a href="~/Site/SPTheothuonghieu/@item.brandID">@item.brandName</a>
+            </li>
+        }
+    </ul>
+
+</div>

@@ -1,0 +1,96 @@
+﻿@using webdemoquanlygiay.Models
+@using System.Globalization
+@using PagedList.Mvc;
+@model PagedList.PagedList<Product>
+@{ ViewBag.Title = "ProductPage";
+                Layout = "~/Share/_LayoutSite.cshtml"; }
+
+<div class="container">
+    <div class="row">
+        <div class="col-3 " style="margin-top:44px">
+            <div class="list-group mb-3">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Loại sản phẩm
+                </button>
+                @foreach (var item in (List<Category>)ViewBag.Categories)
+                {
+    <a class="btn list-group-item list-group-item-action" href="@Url.Action("filterByCategory","Product",new {id = item.categoryID})">@item.categoryName</a>}
+            </div>
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Thương hiệu
+                </button>
+                @foreach (var item in (List<Brand>)ViewBag.Brands)
+                {
+    <a class="btn list-group-item list-group-item-action" href="@Url.Action("filterByBrand","Product",new {id = item.brandID })">@item.brandName</a>}
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <div class="dropdown" style="margin-left:70px">
+                        <a class="btn btn-secondary dropdown-toggle btn-light float-end" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="padding:5px">
+                            Bộ lọc
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="@Url.Action("sortByDescending", "Product")"><i class="fas fa-chevron-down"></i>Giá giảm dần</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("sortByIncreasing", "Product")"><i class="fas fa-chevron-up"></i>Giá tăng dần</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("lastedProducts", "Product")">Mới nhất</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container mb-3 border border-1 shadow rounded rounded-3">
+                    <h4 class="text-center"><b>@ViewBag.productTitle <span>(@Model.ToList().Count)</span></b></h4>
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+            <div class="col-md-4 col-12">
+                <a href="@Url.Action("ProductDetailPage","ProductDetail",new {id = item.productID })" style="text-decoration: none;">
+                    <div class="card">
+                        <img src="@Url.Content(item.image)" class="card-img-top" alt="@Url.Content(item.image)">
+                        <div class="card-body">
+                            <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.productName</p>
+                            <p class="card-text text-danger fw-bold float-start">
+                                @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <hr />
+            </div>}
+                    </div>
+                    <div class="MenuPage">
+                        @Html.PagedListPager(Model, page => Url.Action("ProductPage", new { page = page }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .MenuPage li {
+        display: inline;
+        text-align: center;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+
+        .pagination a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+</style>
+
+

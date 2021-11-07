@@ -14,6 +14,41 @@ namespace webdemoquanlygiay
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+            name: "Dangky",
+            url: "dang-ky",
+            defaults: new { controller = "Taikhoan", action = "Dangky", id = UrlParameter.Optional }
+        );
+            routes.MapRoute(
+            name: "Condition",
+            url: "condition",
+            defaults: new { controller = "Gioithieu", action = "Condition", id = UrlParameter.Optional }
+        );
+            routes.MapRoute(
+             name: "Warranty",
+             url: "warranty",
+             defaults: new { controller = "Gioithieu", action = "Warranty", id = UrlParameter.Optional }
+         );
+            routes.MapRoute(
+        name: "Policy",
+        url: "policy",
+        defaults: new { controller = "Gioithieu", action = "Policy", id = UrlParameter.Optional }
+    );
+            routes.MapRoute(
+             name: "Blog",
+             url: "blog",
+             defaults: new { controller = "Blog", action = "Blog", id = UrlParameter.Optional }
+         );
+            routes.MapRoute(
+             name: "KhuyenMai",
+             url: "khuyen-mai",
+             defaults: new { controller = "Khuyenmai", action = "discountPage", id = UrlParameter.Optional }
+         );
+            routes.MapRoute(
+              name: "GioiThieu",
+              url: "gioi-thieu",
+              defaults: new { controller = "Gioithieu", action = "About", id = UrlParameter.Optional }
+          );
+            routes.MapRoute(
            name: "TatCaSanPham",
            url: "tat-ca-san-pham",
            defaults: new { controller = "Site", action = "Product", id = UrlParameter.Optional }

@@ -1,0 +1,30 @@
+﻿
+@*@model IEnumerable<webdemoquanlygiay.Models.Product>*@
+
+@{ ViewBag.Title = "SPTheoloaigiay";
+    Layout = "~/Share/_LayoutSite.cshtml"; }
+<h3 style="text-align:center; color:red">GIÀY THEO LOẠI</h3>
+<div class="container">
+    <div class="row">
+        @foreach (var giay in Model)
+        {
+            <div id="products">
+                <div class="item">
+                    <a href="@Url.Action("Details","ShopGiay", new { id = giay.productID})">
+                        <img alt="@giay.productName" src="~/images/@giay.image" width="200" />
+
+                        <br />
+                        <h4 style="text-align:right">
+                            @giay.productPrice
+                        </h4>
+                        <h4 style="text-align:center">
+                            @giay.productName
+                        </h4>
+                        <p></p>
+                </div>
+
+
+            </div>}
+    </div>
+</div>
+
