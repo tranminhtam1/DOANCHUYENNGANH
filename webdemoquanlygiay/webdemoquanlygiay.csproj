@@ -49,13 +49,20 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -131,12 +138,34 @@
     <Content Include="Public\images\b5.png" />
     <Content Include="Public\images\bg1.jpg" />
     <Content Include="Public\images\blog.jpg" />
+    <Content Include="Public\images\blog\none.png" />
     <Content Include="Public\images\discount-icon2.png" />
     <Content Include="Public\images\giay1.jfif" />
     <Content Include="Public\images\giay11.jpg" />
     <Content Include="Public\images\ada.png" />
     <Content Include="Public\images\giaydo.png" />
     <Content Include="Public\images\Product\giay11.jpg" />
+    <Content Include="Public\images\sanpham\c1.jpg" />
+    <Content Include="Public\images\sanpham\c2.jpg" />
+    <Content Include="Public\images\sanpham\c3.jpg" />
+    <Content Include="Public\images\sanpham\c4.jpg" />
+    <Content Include="Public\images\sanpham\channels4_profile.jpg" />
+    <Content Include="Public\images\sanpham\none.png" />
+    <Content Include="Public\images\sanpham\p1.jpg" />
+    <Content Include="Public\images\sanpham\p2.jpg" />
+    <Content Include="Public\images\sanpham\p3.jpg" />
+    <Content Include="Public\images\sanpham\p4.jpg" />
+    <Content Include="Public\images\sanpham\s1.jpg" />
+    <Content Include="Public\images\sanpham\s2.jpg" />
+    <Content Include="Public\images\sanpham\s3.jpg" />
+    <Content Include="Public\images\sanpham\s4.jpg" />
+    <Content Include="Public\images\sanpham\v1.jpg" />
+    <Content Include="Public\images\sanpham\v2.jpg" />
+    <Content Include="Public\images\sanpham\v3.jpg" />
+    <Content Include="Public\images\sanpham\v4.jpg" />
+    <Content Include="Public\images\sanpham\Â.jfif" />
+    <Content Include="Public\images\user\employee\default-employee.jpg" />
+    <Content Include="Public\images\user\employee\hinhnhanhvien.jpg" />
     <Content Include="Public\js\CustomerDetail.js" />
     <Content Include="Public\webfonts\fa-brands-400.svg" />
     <Content Include="Public\webfonts\fa-regular-400.svg" />
@@ -556,22 +585,22 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthController.cs" />
-    <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ContactsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
-    <Compile Include="Areas\Admin\Controllers\DiscountsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DiscountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\Topics1Controller.cs" />
-    <Compile Include="Areas\Admin\Controllers\TopicsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\demoController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\GioithieuController.cs" />
     <Compile Include="Controllers\KhuyenMaiController.cs" />
@@ -591,10 +620,10 @@
     </Compile>
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Discount.cs" />
-    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\mydbcontext.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
@@ -631,8 +660,6 @@
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Auth\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Topics\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Topics\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Topics\Details.cshtml" />
@@ -641,18 +668,7 @@
     <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Brands\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Brands\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Brands\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Brands\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Brands\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
@@ -668,21 +684,40 @@
     <Content Include="Areas\Admin\Views\Contacts\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Contacts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Contacts\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Discounts\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Discounts\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Discounts\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Discounts\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Discounts\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Orders\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Topics1\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Topics1\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Topics1\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Topics1\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Topics1\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\listCategories.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\insertCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\editCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\editEmployee.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Employee.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\employeeDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\insertEmployee.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\editDiscount.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\insertDiscount.cshtml" />
+    <Content Include="Areas\Admin\Views\Discount\listDiscount.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\contactDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\feedback.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\listContact.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Order.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\orderDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\blogDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\BlogList.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\createBlog.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\editBlog.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\editTopic.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\insertTopic.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\TopicList.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Brands\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Share\_LayoutSite.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
@@ -750,6 +785,9 @@
     <Content Include="Views\Customer\SignUp.cshtml" />
     <Content Include="Views\Taikhoan\customerDetail.cshtml" />
     <Content Include="Views\Taikhoan\customerPartial.cshtml" />
+    <Content Include="Views\Blogs\Index.cshtml" />
+    <Content Include="Views\Blogs\BlogDetail.cshtml" />
+    <Content Include="Views\demo\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -760,7 +798,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\demo\" />
+    <Folder Include="Models\Data\" />
     <Folder Include="Views\ProductCategory\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

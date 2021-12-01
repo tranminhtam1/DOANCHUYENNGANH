@@ -30,53 +30,72 @@
                 <div class="my-3 text-center">
                     Hoặc đăng nhập với
                 </div>
+                @*<div class="text-center">
+                <a class="fb-login-button justify-content-center" onlogin="checkLoginState();" data-width="500" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></a>
+            </div>*@
                 <div class="text-center">
                     <a class="fb-login-button justify-content-center" onlogin="checkLoginState();" data-width="500" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></a>
-                </div>}
+                </div>
+            }
+            @*<h3 style="text-align:center">
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState(); ">
+                </fb:login-button>
+            </h3>*@
+            <h4 style="text-align:center;color:red" ; id="status"> </h4>
+
+
+
+            <!-- Load the JS SDK asynchronously -->
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+            <script>
+                function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+                    console.log('statusChangeCallback');
+                    console.log(response);                   // The current login status of the person.
+                    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+                        testAPI();
+                    } else {                                 // Not logged into your webpage or we are unable to tell.
+                        document.getElementById('status').innerHTML = 'Đăng nhập bằng ' +
+                            'Facebook.';
+                    }
+                }
+
+
+                function checkLoginState() {               // Called when a person is finished with the Login Button.
+                    FB.getLoginStatus(function (response) {   // See the onlogin handler
+                        statusChangeCallback(response);
+                    });
+                }
+                window.fbAsyncInit = function () {
+                    FB.init({
+                        appId: '678207023167740',
+                        cookie: true,
+                        xfbml: true,
+                        version: 'v12.0'
+                    });
+
+                    FB.AppEvents.logPageView();
+
+                };
+
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) { return; }
+                    js = d.createElement(s); js.id = id;
+                    js.src = "https://connect.facebook.net/en_US/sdk.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+
+                function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+                    console.log('Welcome!  Fetching your information.... ');
+                    FB.api('/me', function (response) {
+                        console.log('Successful login for: ' + response.name);
+                        document.getElementById('status').innerHTML =
+                            'Xin chào, ' + response.name + '!';
+                    });
+
+                }
+            </script>
         </div>
     </div>
 </div>
-
-@section scripts {
-    <script>
-        function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
-            console.log('statusChangeCallback');
-            console.log(response);                   // The current login status of the person.
-            if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-                login();
-            } else {                                 // Not logged into your webpage or we are unable to tell.
-                document.getElementById('status').innerHTML = 'Please log ' +
-                    'into this webpage.';
-            }
-        }
-
-        function checkLoginState() {               // Called when a person is finished with the Login Button.
-            FB.getLoginStatus(function (response) {   // See the onlogin handler
-                statusChangeCallback(response);
-            });
-        }
-
-        function login() {
-            FB.login(function (response) {
-                FB.api('/me?fields=id,name,last_name,email,picture', function (response) {
-                    $.ajax({
-                        url: '@Url.Action("LoginFB", "Taikhoan")',
-                        type: 'POST',
-                        async: false,
-                        cache: false,
-                        data: { idSocial: response.id, fullname: response.name, email: response.email, picture: response.picture.data.url },
-                        success: function (data) {
-                            window.location = '@Url.Action("Index", "Home")'
-                        },
-                        error: function (request, status, error) {
-                            window.location = '@Url.Action("Dangnhap", "Taikhoan")'
-                        }
-                    });
-                });
-            }, { scope: 'public_profile,email' });
-        }
-
-
-    </script>
-}
 

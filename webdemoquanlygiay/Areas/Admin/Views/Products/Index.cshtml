@@ -1,11 +1,7 @@
-﻿@*@model IEnumerable<webdemoquanlygiay.Models.Product>*@
-@using webdemoquanlygiay.Models
-@using PagedList.Mvc;
-@model PagedList.PagedList<Product>
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-}
+﻿@model IEnumerable<webdemoquanlygiay.Models.Product>
+@using System.Globalization
+@{ ViewBag.Title = "Index";
+                Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; }
 
 <div class="container mt-3" style="background-color: rgb(240,240,240);">
     <div class="row">
@@ -17,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <a class="btn btn-success float-end my-2" href="@Url.Action("Create","Product")"><i class="fa fa-plus-circle" aria-hidden="true"></i><b>Thêm mới sản phẩm</b></a>
+            <a class="btn btn-success float-end my-2" href="@Url.Action("Create","Products")"><i class="fa fa-plus-circle" aria-hidden="true"></i><b>Thêm mới sản phẩm</b></a>
         </div>
     </div>
     <table id="mytable">
@@ -55,49 +51,44 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        <img src="@Url.Content(item.image)" alt="@Url.Content(item.image)" width="80" height="80" />
-                    </td>
-                    <td>
-                        @Html.TextAreaFor(modelItem => item.productName, new { @readonly = "readonly" })
-                    </td>
-                    <td style="white-space: nowrap;">
-                        @*@string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)*@
-                    </td>
-                    <td>
-                        @Html.TextAreaFor(modelItem => item.productDetail, new { @readonly = "readonly" })
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category.categoryName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Brand.brandName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dateCreate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.amount)
-                    </td>
-                    <td style="white-space: nowrap;">
-                        <a class="btn btn-primary fas fa-edit" href="@Url.Action("Edit", "Product", new {id = item.productID })"></a>
-                        <a class="btn btn-info fa fa-info-circle text-white" href="@Url.Action("Detail", "Product", new {id = item.productID })"></a>
-                        <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("Delete", "Product", new {id = item.productID })"></a>
-                    </td>
-                </tr>
-       }
+<tr>
+    <td>
+        <img src="@Url.Content(item.image)" alt="@Url.Content(item.image)" width="80" height="80" />
+    </td>
+    <td>
+        @Html.TextAreaFor(modelItem => item.productName, new { @readonly = "readonly" })
+    </td>
+    <td style="white-space: nowrap;">
+        @string.Format(new CultureInfo("vi-VN"), "{0:c}", item.productPrice)
+    </td>
+    <td>
+        @Html.TextAreaFor(modelItem => item.productDetail, new { @readonly = "readonly" })
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.categoryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Brand.brandName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dateCreate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.amount)
+    </td>
+    <td style="white-space: nowrap;">
+        <a class="btn btn-primary fas fa-edit" href="@Url.Action("Edit", "Products", new {id = item.productID })"></a>
+        @*<a class="btn btn-info fas fa-info-circle text-white" href="@Url.Action("Details", "Products", new {id = item.productID })"></a>*@
+        <a class="btn btn-info text-white" href="@Url.Action("Details", "Products", new {id = item.productID })">
+            <i class="fas fa-info-circle"></i> </a>
+            <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("Delete", "Products", new {id = item.productID })"></a>
+</td>
+</tr>            }
         </tbody>
     </table>
 </div>
 <script>
     jQuery(document).ready(function () {
         $('#mytable').DataTable();
-    });</script>
-<div>
-    Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) /@Model.PageCount
-</div>
-<div class="MenuTrang">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
-</div>
-
+    });
+</script>

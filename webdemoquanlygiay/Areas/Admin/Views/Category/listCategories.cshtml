@@ -1,0 +1,46 @@
+﻿@model IEnumerable<webdemoquanlygiay.Models.Category>
+@{ ViewBag.Title = "listCategories";
+                Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; }
+<div class="container">
+    <h4>Danh sách các loại sản phẩm</h4>
+
+    <p>
+        <a class="btn btn-success" href="@Url.Action("insertCategory", "Category")">Thêm mới</a>
+        <span>@Html.Raw(ViewBag.Alert)</span>
+    </p>
+
+    <table id="mytable">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>
+                    Loại sản phẩm
+                </th>
+                <th>
+                    Thao tác
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.categoryName)
+    </td>
+    <td>
+        <a class="btn btn-primary fas fa-edit" href="@Url.Action("editCategory", "Category", new {id = item.categoryID })"></a>
+        <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("removeCategory", "Category", new {id = item.categoryID })"></a>
+    </td>
+</tr>            }
+        </tbody>
+
+
+    </table>
+
+</div>
+
+<script>jQuery(document).ready(function () {
+        $('#mytable').DataTable();
+    });</script>
+

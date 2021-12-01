@@ -200,6 +200,7 @@ C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\roslyn\VBCS
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\EntityFramework.dll
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\EntityFramework.SqlServer.dll
+C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\Facebook.dll
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\PagedList.dll
@@ -212,6 +213,7 @@ C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\System.Web.
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\System.Web.Webpages.Razor.dll
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\EntityFramework.xml
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\EntityFramework.SqlServer.xml
+C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\Facebook.xml
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\PagedList.xml
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\PagedList.Mvc.xml
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\System.Web.Razor.xml
@@ -226,3 +228,5 @@ C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\obj\Debug\webde
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\obj\Debug\webdemoquanlygiay.csproj.CopyComplete
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\obj\Debug\webdemoquanlygiay.dll
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\obj\Debug\webdemoquanlygiay.pdb
+C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\Newtonsoft.Json.dll
+C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\Newtonsoft.Json.xml

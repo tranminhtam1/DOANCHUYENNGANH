@@ -1,12 +1,13 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using webdemoquanlygiay.Models;
+using WebApplication1.Services;
 
 namespace webdemoquanlygiay.Areas.Admin.Controllers
 {
@@ -14,119 +15,133 @@ namespace webdemoquanlygiay.Areas.Admin.Controllers
     {
         private mydbcontext db = new mydbcontext();
 
-        // GET: Admin/Users
-        public ActionResult Index()
+        public ActionResult Employee()
         {
-            var users = db.Users.Include(u => u.Role);
-            return View(users.ToList());
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var allEmployee = db.Users.Where(u => u.roleID != 1 && u.roleID != 2).ToList();
+            return View(allEmployee);
         }
 
-        // GET: Admin/Users/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
 
-        // GET: Admin/Users/Create
-        public ActionResult Create()
+        public ActionResult insertEmployee()
         {
-            ViewBag.roleID = new SelectList(db.Roles, "roleID", "roleName");
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            ViewBag.Roles = db.Roles.Where(e => e.roleID != 1 && e.roleID != 2).ToList();
             return View();
         }
 
-        // POST: Admin/Users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "userID,roleID,fullName,userName,password,email,phoneNumber,address,image,gender,dateOfBirth,idSocial")] User user)
+        public ActionResult insertEmployee(FormCollection frm, HttpPostedFileBase ImageUpload)
         {
-            if (ModelState.IsValid)
+            var emp = new User();
+            emp.roleID = Int32.Parse(frm["roleID"]);
+            emp.fullName = frm["fullName"];
+            emp.userName = frm["userName"];
+            emp.password = MD5.MD5Hash(frm["password"].ToString());
+            emp.email = frm["email"];
+            emp.phoneNumber = frm["phoneNumber"];
+            emp.address = frm["address"];
+            emp.gender = bool.Parse(frm["gender"]);
+            emp.dateOfBirth = DateTime.Parse(frm["dateOfBirth"]);
+            if (ImageUpload != null)
             {
-                db.Users.Add(user);
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
+                fileName += extension;
+                fileName += extension;
+                emp.image = "~/Public/images/user/employee/" + fileName;
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Public/images/user/employee"), fileName));
+
+
+                db.Users.Add(emp);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Employee");
             }
-
-            ViewBag.roleID = new SelectList(db.Roles, "roleID", "roleName", user.roleID);
-            return View(user);
+            else
+            {
+                emp.image = "~/Public/images/user/employee/default-employee.jpg";
+                db.Users.Add(emp);
+                db.SaveChanges();
+                return RedirectToAction("Employee");
+            }
         }
 
-        // GET: Admin/Users/Edit/5
-        public ActionResult Edit(int? id)
+        [HttpGet]
+        public ActionResult editEmployee(int? id)
         {
-            if (id == null)
+            if (Session["userID"] == null || id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Login", "Account");
             }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.roleID = new SelectList(db.Roles, "roleID", "roleName", user.roleID);
-            return View(user);
+            ViewBag.Roles = db.Roles.Where(e => e.roleID != 1 && e.roleID != 2).ToList();
+            return View(db.Users.Find(id));
         }
 
-        // POST: Admin/Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "userID,roleID,fullName,userName,password,email,phoneNumber,address,image,gender,dateOfBirth,idSocial")] User user)
+        public ActionResult editEmployee(FormCollection frm)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.roleID = new SelectList(db.Roles, "roleID", "roleName", user.roleID);
-            return View(user);
-        }
-
-        // GET: Admin/Users/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        // POST: Admin/Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            var emp = db.Users.Find(Int32.Parse(frm["userID"]));
+            emp.roleID = Int32.Parse(frm["roleID"]);
+            emp.fullName = frm["fullName"];
+            emp.userName = frm["userName"];
+            emp.password = frm["password"];
+            emp.email = frm["email"];
+            emp.phoneNumber = frm["phoneNumber"];
+            emp.address = frm["address"];
+            emp.gender = bool.Parse(frm["gender"]);
+            emp.dateOfBirth = DateTime.Parse(frm["dateOfBirth"]);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Employee");
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult deleteEmployee(int? id)
         {
-            if (disposing)
+            if (Session["userID"] == null || id == null)
             {
-                db.Dispose();
+                return RedirectToAction("Login", "Account");
             }
-            base.Dispose(disposing);
+            var selectedEmp = db.Users.Find(id);
+            db.Users.Remove(selectedEmp);
+            db.SaveChanges();
+            return RedirectToAction("Employee", "Users");
+        }
+
+        public ActionResult employeeDetails(int? id)
+        {
+            if (Session["userID"] == null || id == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var selectedEmp = db.Users.Find(id);
+            return View(selectedEmp);
+        }
+
+        public ActionResult uploadImage(FormCollection frm, HttpPostedFileBase ImageUpload)
+        {
+            var user = db.Users.Find(Int32.Parse(frm["userID"]));
+            if (ImageUpload != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
+                fileName += extension;
+                user.image = "~/Public/images/user/employee/" + fileName; ;
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Public/images/user/employee"), fileName));
+                db.SaveChanges();
+
+                return RedirectToAction("editEmployee", "Users", new { id = Int32.Parse(frm["userID"]) });
+            }
+            else
+            {
+                user.image = "~/Public/images/user/employee/default-employee.jpg";
+                db.SaveChanges();
+                return RedirectToAction("editEmployee", "Users", new { id = Int32.Parse(frm["userID"]) });
+            }
         }
     }
 }

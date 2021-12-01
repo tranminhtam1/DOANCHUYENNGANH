@@ -12,27 +12,30 @@
         <div class="col-md-6">
             @using (Html.BeginForm("Login", "Customer", FormMethod.Post))
             {
-<h3 class="text-center mt-2"><b>Đăng nhập</b></h3>
+                <h3 class="text-center mt-2"><b>Đăng nhập</b></h3>
                 <div class="mb-3">
                     <label for="username" class="form-label">Tài khoản</label>
                     <input type="text" name="userName" class="form-control border-dark" id="username" required>
                 </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Mật khẩu</label>
-                                    <input type="password" name="password" class="form-control border-dark" id="password" required>
-                                </div>
-                                                <div class="mb-3">
-                                                    Bạn chưa có tài khoản ? <span><a href="@Url.Action("SignUp","Customer")">Đăng ký</a></span>
-                                                </div>
-                                                                <div class="mb-1 text-center">
-                                                                    <button type="submit" class="btn btn-primary w-100 mx-auto text-center"><b>Đăng nhập</b></button>
-                                                                </div>
-                                                                                <div class="my-3 text-center">
-                                                                                    Hoặc đăng nhập với
-                                                                                </div>
-                                                                                                <div class="text-center">
-                                                                                                    <a class="fb-login-button justify-content-center" onlogin="checkLoginState();" data-width="500" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></a>
-                                                                                                </div>            }
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input type="password" name="password" class="form-control border-dark" id="password" required>
+                </div>
+                <div class="mb-3">
+                    Bạn chưa có tài khoản ? <span><a href="@Url.Action("SignUp","Customer")">Đăng ký</a></span>
+                </div>
+                <div class="mb-1 text-center">
+                    <button type="submit" class="btn btn-primary w-100 mx-auto text-center"><b>Đăng nhập</b></button>
+                </div>
+                <div class="my-3 text-center">
+                    Hoặc đăng nhập với
+                </div>
+                
+                <div class="text-center">
+                    
+                    <a class="fb-login-button justify-content-center" onlogin="checkLoginState();" data-width="500" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></a>
+                </div>
+                }
         </div>
     </div>
 </div>
@@ -60,7 +63,7 @@
             FB.login(function (response) {
                 FB.api('/me?fields=id,name,last_name,email,picture', function (response) {
                     $.ajax({
-                        url: '@Url.Action("LoginFB", "Customer")',
+                        url: '@Url.Action("LoginFacebook", "Taikhoan")',
                         type: 'POST',
                         async: false,
                         cache: false,
@@ -69,7 +72,7 @@
                             window.location = '@Url.Action("Index", "Home")'
                         },
                         error: function (request, status, error) {
-                            window.location = '@Url.Action("Login", "Customer")'
+                            window.location = '@Url.Action("Dangnhap", "Taikhoan")'
                         }
                     });
                 });
@@ -77,6 +80,28 @@
         }
 
 
+    </script>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '{315435220399059}',
+                cookie: true,
+                xfbml: true,
+                version: '{V12.0}'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 }
 

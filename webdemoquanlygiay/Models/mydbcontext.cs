@@ -8,7 +8,7 @@ namespace webdemoquanlygiay.Models
     public partial class mydbcontext : DbContext
     {
         public mydbcontext()
-            : base("name=mydbcontext")
+            : base("name=mydbcontext1")
         {
         }
 

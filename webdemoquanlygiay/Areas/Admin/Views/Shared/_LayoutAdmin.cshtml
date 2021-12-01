@@ -6,140 +6,78 @@
     <link href="~/Public/css/all.min.css" rel="stylesheet" />
     <link href="~/Public/css/LayoutAdmin.css" rel="stylesheet" />
 
-    @RenderSection("head", required: false)
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/fonts/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/fonts/css/brands.min.css" rel="stylesheet" />
+    <link href="~/fonts/css/solid.min.css" rel="stylesheet" />
+    <link href="~/Public/css/Admin/LayoutAdmin.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    @*@RenderSection("head", required: false)*@
 </head>
 <body>
-    <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '506598613756786',
-                cookie: true,
-                xfbml: true,
-                version: 'v11.0'
-            });
-
-            FB.AppEvents.logPageView();
-
-        };
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <section class="header">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="@Url.Action("Index", "Products")">ADMIN</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>s
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Sản phẩm
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Products")">Tất cả sản phẩm</a></li>
-                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Categories")">Loại sản phẩm</a></li>
-                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Brands")">Thương hiệu</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Users")">Nhân viên</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Discounts")">Khuyến mãi</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Orders")">Đơn hàng</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Contacts")">Liên hệ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Blogs")">Bài viết</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Topics")">Chủ đề bài viết</a>
-                            </li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Products")">Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sản phẩm
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Products")">Tất cả sản phẩm</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("listCategories", "Category")">Loại sản phẩm</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Brands")">Thương hiệu</a></li>
                         </ul>
-                    </div>
-                    @*<div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Sản phẩm
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="@Url.Action("Index","Product")">Danh sách sản phẩm</a></li>
-                                        <li><a class="dropdown-item" href="#">Thêm sản phẩm</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="@Url.Action("Index","Category")">Danh sách loại sản phẩm</a></li>
-                                        <li><a class="dropdown-item" href="#">Thêm loại sản phẩm</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Bài viết
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="#">Tất cả bài viết</a></li>
-                                        <li><a class="dropdown-item" href="#">Thêm bài viết</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="#">Tất cả trang đơn</a></li>
-                                        <li><a class="dropdown-item" href="#">Thêm trang đơn</a></li>
-                                        <li><a class="dropdown-item" href="@Url.Action("Index","Topics")">Tất cả chủ đề</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Employee", "Users")">Nhân viên</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("listDiscount", "Discount")">Khuyến mãi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Order", "Order")">Đơn hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("listContact", "Contact")">Liên hệ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("BlogList", "Blog")">Bài viết</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("TopicList", "Topic")">Chủ đề bài viết</a>
+                    </li>
+                </ul>
+            </div>
 
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Bán hàng
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="#">Danh sách sản phẩm</a></li>
-                                        <li><a class="dropdown-item" href="#">Thêm sản phẩm</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="#">Danh sách loại sản phẩm</a></li>
-                                        <li><a class="dropdown-item" href="#">Thêm loại sản phẩm</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                       Giao diện
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="#">Danh sách sản phẩm</a></li>
-                                        <li><a class="dropdown-item" href="#">Thêm sản phẩm</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="#">Danh sách loại sản phẩm</a></li>
-                                        <li><a class="dropdown-item" href="#">Thêm loại sản phẩm</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <form class="d-flex">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                            </form>
-                        </div>*@
-                </div>
-            </nav>
+            <ul class="nav justify-content-end">
+                <li class="dropdown">
+                    <a class="dropdown-toggle text-dark" id="dropdownMenuButton1"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false"
+                       style="text-decoration:none">
+                        <b>@Session["fullname"]</b>
+                        <img class="border border-2 border-dark rounded-3" src="@Url.Content(Session["image"].ToString())" alt="" width="48" height="48" />
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="@Url.Action("Logout","Account")">Đăng xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+    </nav>
+    <section class="main-content">
+        @RenderBody()
     </section>
-    <section class="main content">
-        <div class="container-fluid">
-            @RenderBody()
-        </div>
-    </section>
-    <footer>
-        <center><b>&copy; @DateTime.Now.Year - by THT Store</b></center>
+    <footer><center><b>&copy; @DateTime.Now.Year - by ROVEL Store</b></center>
     </footer>
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/scripts.js"></script>

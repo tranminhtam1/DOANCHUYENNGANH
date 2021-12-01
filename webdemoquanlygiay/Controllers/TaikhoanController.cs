@@ -16,12 +16,14 @@ using webdemoquanlygiay.Models;
 using MyClass.DAO;
 using WebApplication1.Services;
 using webdemoquanlygiay.DAO;
+using Facebook;
+using System.Configuration;
 
 namespace webdemoquanlygiay.Controllers
 {
     public class TaikhoanController : Controller
     {
-        mydbcontext db = new mydbcontext();
+         mydbcontext db = new mydbcontext();
 
         [HttpGet]
         public ActionResult Dangnhap()
@@ -29,7 +31,17 @@ namespace webdemoquanlygiay.Controllers
             return View();
         }
 
-
+        //private Uri RedirectUri
+        //{
+        //    get
+        //    {
+        //        var uriBuider = new UriBuilder(Request.Url);
+        //        uriBuider.Query = null;
+        //        uriBuider.Fragment = null;
+        //        uriBuider.Path = Url.Action("FacebookCallback");
+        //        return uriBuider.Uri;
+        //    }
+        //}
         public ActionResult customerPartial()
         {
             return PartialView();
@@ -40,7 +52,7 @@ namespace webdemoquanlygiay.Controllers
         {
             var userName = frm["userName"];
             var password = MD5.MD5Hash(frm["password"]);
-            User user = db.Users.SingleOrDefault(u => u.userName == userName && u.password == password && u.roleID == 1);
+            User user = db.Users.SingleOrDefault(u => u.userName.Equals(userName)== true && u.password.Equals(password)==true && u.roleID == 1);
             if (user != null)
             {
                 Session["User"] = user;
@@ -49,32 +61,44 @@ namespace webdemoquanlygiay.Controllers
             return View();
         }
 
-        public ActionResult LoginFB(string idSocial, string fullname, string email, string picture)
-        {
-            var fbUser = new User();
-            var userDao = new UserDao();
-            if (userDao.isExisted(idSocial) == true)
-            {
-                fbUser = db.Users.FirstOrDefault(u => u.idSocial == idSocial);
-                Session["User"] = fbUser;
-            }
-            else
-            {
-                fbUser.idSocial = idSocial;
-                fbUser.email = email;
-                fbUser.userName = email;
-                fbUser.fullName = fullname;
-                fbUser.image = picture;
-                fbUser.roleID = 1;
-                fbUser.gender = true;
-                db.Users.Add(fbUser);
-                db.SaveChanges();
-                Session["User"] = fbUser;
-            }
+        //public ActionResult LoginFB(string idSocial, string fullname, string email, string picture)
+        //{
+        //    var fbUser = new User();
+        //    var userDao = new UserDao();
+        //    if (userDao.isExisted(idSocial) == true)
+        //    {
+        //        fbUser = db.Users.FirstOrDefault(u => u.idSocial == idSocial);
+        //        Session["User"] = fbUser;
+        //    }
+        //    else
+        //    {
+        //        fbUser.idSocial = idSocial;
+        //        fbUser.email = email;
+        //        fbUser.userName = email;
+        //        fbUser.fullName = fullname;
+        //        fbUser.image = picture;
+        //        fbUser.roleID = 1;
+        //        fbUser.gender = true;
+        //        db.Users.Add(fbUser);
+        //        db.SaveChanges();
+        //        Session["User"] = fbUser;
+        //    }
 
-            return RedirectToAction("Index", "Home");
-        }
-
+        //    return RedirectToAction("Index", "Home");
+        //}
+        //public ActionResult LoginFacebook()
+        //{
+        //    var fb = new FacebookClient();
+        //    var loginUrl = fb.GetLoginUrl(new
+        //    {
+        //        client_id = ConfigurationManager.AppSettings["315435220399059"],
+        //        client_secret = ConfigurationManager.AppSettings["df2a6e1bc05fe227edeb970dab15f9dc"],
+        //        redirect_uri = RedirectUri.AbsoluteUri,
+        //        response_type = "code",
+        //        scope = "email",
+        //    });
+        //    return Redirect(loginUrl.AbsoluteUri);
+        //}
         public ActionResult Logout()
         {
             Session["User"] = null;
@@ -191,3 +215,5 @@ namespace webdemoquanlygiay.Controllers
         }
     }
 }
+//c8516b92e885a919fed1a1641b7ef50f
+//311028634206903

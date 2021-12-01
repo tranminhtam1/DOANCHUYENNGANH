@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -21,98 +22,143 @@ namespace webdemoquanlygiay.Areas.Admin.Controllers
         {
             return db.Products.OrderByDescending(a => a.dateCreate).Take(count).ToList();
         }
-        public ActionResult Index(int ?page)
+        public ActionResult Index(int? page)
         {
+            if (Session["admin"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             //if (Session["userID"] == null)
             //{
             //    return RedirectToAction("Login", "Account");
             //}
             //var productList = db.Products.ToList();
             //return View(productList);
-            int pageSize=10;
-            int pageNum = (page ?? 1);
 
-            var giaymoi = Laygiaymoi(15);
-            return View(giaymoi.ToPagedList(pageNum, pageSize));
+            //int pageSize=10;
+            //int pageNum = (page ?? 1);
+
+            //var giaymoi = Laygiaymoi(15);
+            //return View(giaymoi.ToPagedList(pageNum, pageSize));
+            var productList = db.Products.ToList();
+            return View(productList);
         }
 
         // GET: Admin/Products/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Product product = db.Products.Find(id);
+            //if (product == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(product);
+            if (id == null || Session["userID"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Login", "Account");
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
+            Product pro = db.Products.Find(id);
+            return View(pro);
         }
 
         // GET: Admin/Products/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.brandID = new SelectList(db.Brands, "brandID", "brandName");
+        //    ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName");
+        //    return View();
+        //}
+
+        //// POST: Admin/Products/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "productID,categoryID,brandID,productName,productPrice,productDetail,image,dateCreate,amount")] Product product)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Products.Add(product);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.brandID = new SelectList(db.Brands, "brandID", "brandName", product.brandID);
+        //    ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName", product.categoryID);
+        //    return View(product);
+        //}
         public ActionResult Create()
         {
-            ViewBag.brandID = new SelectList(db.Brands, "brandID", "brandName");
-            ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName");
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            ViewBag.Category = db.Categories.ToList();
+            ViewBag.Brand = db.Brands.ToList();
             return View();
         }
 
-        // POST: Admin/Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "productID,categoryID,brandID,productName,productPrice,productDetail,image,dateCreate,amount")] Product product)
+        [ValidateInput(false)]
+        public ActionResult createProduct(Product productInfo, HttpPostedFileBase ImageUpload)
         {
-            if (ModelState.IsValid)
+            productInfo.dateCreate = DateTime.Now;
+            if (ImageUpload != null)
             {
-                db.Products.Add(product);
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
+                fileName += extension;
+                productInfo.image = "~/Public/images/sanpham/" + fileName;
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Public/images/sanpham"), fileName));
+                db.Products.Add(productInfo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.brandID = new SelectList(db.Brands, "brandID", "brandName", product.brandID);
-            ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName", product.categoryID);
-            return View(product);
+            else
+            {
+                productInfo.image = "~/Public/images/sanpham/none.png";
+                db.Products.Add(productInfo);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Admin/Products/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["userID"] == null || id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Login", "Account");
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.brandID = new SelectList(db.Brands, "brandID", "brandName", product.brandID);
-            ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName", product.categoryID);
-            return View(product);
+            Product prod = db.Products.Find(id);
+            ViewBag.Category = db.Categories.ToList();
+            ViewBag.Brand = db.Brands.ToList();
+            return View(prod);
         }
-
-        // POST: Admin/Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "productID,categoryID,brandID,productName,productPrice,productDetail,image,dateCreate,amount")] Product product)
+        [ValidateInput(false)]
+        public ActionResult Edit(FormCollection frm)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.brandID = new SelectList(db.Brands, "brandID", "brandName", product.brandID);
-            ViewBag.categoryID = new SelectList(db.Categories, "categoryID", "categoryName", product.categoryID);
-            return View(product);
-        }
+            var editedProd = db.Products.Find(Int32.Parse(frm["productID"]));
+            editedProd.productName = frm["productName"];
+            editedProd.categoryID = Int32.Parse(frm["categoryID"]);
+            editedProd.brandID = Int32.Parse(frm["brandID"]);
+            editedProd.productPrice = Int32.Parse(frm["productPrice"]);
+            editedProd.amount = Int32.Parse(frm["amount"]);
+            editedProd.productDetail = frm["productDetail"];
+            editedProd.dateCreate = DateTime.Now;
+            db.SaveChanges();
+            return RedirectToAction("Index");
 
+        }
         // GET: Admin/Products/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -147,5 +193,27 @@ namespace webdemoquanlygiay.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult uploadImage(FormCollection frm, HttpPostedFileBase ImageUpload)
+        {
+            var prod = db.Products.Find(Int32.Parse(frm["productID"]));
+            if (ImageUpload != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                string extension = Path.GetExtension(ImageUpload.FileName);
+                fileName += extension;
+                prod.image = "~/Public/images/sanpham/" + fileName; ;
+                ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Public/images/sanpham"), fileName));
+
+                db.SaveChanges();
+
+                return RedirectToAction("Edit", "Products", new { id = Int32.Parse(frm["productID"]) });
+            }
+            else
+            {
+                prod.image = "~/Public/images/sanpham/none.png";
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
     }
-}
+}   

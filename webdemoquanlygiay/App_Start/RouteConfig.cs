@@ -69,5 +69,10 @@ namespace webdemoquanlygiay
                 defaults: new { controller = "Site", action = "Index", id = UrlParameter.Optional }
             );
         }
+
+        internal static object GetConfigByKey(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
