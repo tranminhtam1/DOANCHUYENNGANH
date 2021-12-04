@@ -240,12 +240,12 @@ namespace webdemoquanlygiay.Controllers
         {
             //request params need to request to MoMo system
             string endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-            string partnerCode = "MOMOGYJC20210723";
-            string accessKey = "hDsMbx6WguXjVTOU";
-            string serectkey = "0sbkPWPK8ZF19zQa3HT2gLzLiNNXhcdz";
+            string partnerCode = "MOMORLSF20211201";
+            string accessKey = "MgtHghqiriGV8XmN";
+            string serectkey = "RtDSJn3E90nQhzcUnEntAQFizq2GUi1S";
             string orderInfo = "Thanh toán trực tuyến";
-            string returnUrl = "https://laptoptht.xyz/Cart/Finish";
-            string notifyurl = "https://laptoptht.xyz/Cart/SavePayment/" + userid.ToString(); //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+            string returnUrl = "https://http:/rovelshoes.somee.com/Cart/Finish";
+            string notifyurl = "https:/http://rovelshoes.somee.com/Cart/SavePayment/" + userid.ToString(); //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
             string amount = FinalMoney().ToString();
             string orderid = DateTime.Now.Ticks.ToString();

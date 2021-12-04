@@ -139,11 +139,14 @@
     <Content Include="Public\images\bg1.jpg" />
     <Content Include="Public\images\blog.jpg" />
     <Content Include="Public\images\blog\none.png" />
+    <Content Include="Public\images\Business_Analytics_02_generated.jpg" />
     <Content Include="Public\images\discount-icon2.png" />
+    <Content Include="Public\images\dn.png" />
     <Content Include="Public\images\giay1.jfif" />
     <Content Include="Public\images\giay11.jpg" />
     <Content Include="Public\images\ada.png" />
     <Content Include="Public\images\giaydo.png" />
+    <Content Include="Public\images\logo\momo.png" />
     <Content Include="Public\images\Product\giay11.jpg" />
     <Content Include="Public\images\sanpham\c1.jpg" />
     <Content Include="Public\images\sanpham\c2.jpg" />
@@ -163,7 +166,6 @@
     <Content Include="Public\images\sanpham\v2.jpg" />
     <Content Include="Public\images\sanpham\v3.jpg" />
     <Content Include="Public\images\sanpham\v4.jpg" />
-    <Content Include="Public\images\sanpham\Â.jfif" />
     <Content Include="Public\images\user\employee\default-employee.jpg" />
     <Content Include="Public\images\user\employee\hinhnhanhvien.jpg" />
     <Content Include="Public\js\CustomerDetail.js" />
