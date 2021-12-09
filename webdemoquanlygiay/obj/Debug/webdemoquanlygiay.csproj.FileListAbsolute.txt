@@ -223,7 +223,6 @@ C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\System.Web.
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\System.Web.Helpers.xml
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\System.Web.Mvc.xml
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\obj\Debug\webdemoquanlygiay.csproj.AssemblyReference.cache
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\obj\Debug\webdemoquanlygiay.csproj.CoreCompileInputs.cache
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\obj\Debug\webdemoquanlygiay.csproj.CopyComplete
 C:\Users\tran minh tam\Desktop\doanchuyennganh\webdemoquanlygiay\obj\Debug\webdemoquanlygiay.dll

@@ -590,6 +590,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
@@ -720,6 +721,9 @@
     <Content Include="Areas\Admin\Views\Brands\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Brands\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Brands\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\listbrand.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\insertbrand.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\editbrand.cshtml" />
     <None Include="packages.config" />
     <Content Include="Share\_LayoutSite.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />

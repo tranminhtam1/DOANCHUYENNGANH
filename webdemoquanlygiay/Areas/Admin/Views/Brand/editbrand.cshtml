@@ -1,0 +1,40 @@
+﻿@model webdemoquanlygiay.Models.Brand
+
+@{
+    ViewBag.Title = "editbrand";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Cập nhật thương hiệu sản phẩm</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(Model => Model.brandID)
+            <div class="form-group">
+                <label class="mb-3">Tên thương hiệu sản phẩm</label>
+                <div class="col-md-10 mb-3">
+                    <input class="form-control" type="text" name="brandName" value="@Model.brandName" required />
+                    @Html.ValidationMessageFor(model => model.brandName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>}
+
+    <div>
+        @Html.ActionLink("Quay lại danh sách", "listbrand")
+    </div>
+</div>
+
+
+
+

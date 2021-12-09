@@ -1,0 +1,52 @@
+﻿@model IEnumerable<webdemoquanlygiay.Models.Brand>
+@{
+    ViewBag.Title = "listbrand";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h4>Danh sách các thương hiệu sản phẩm</h4>
+
+    <p>
+        <a class="btn btn-success" href="@Url.Action("insertbrand", "Brand")">Thêm mới</a>
+        <span>@Html.Raw(ViewBag.Alert)</span>
+    </p>
+
+    <table id="mytable">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>
+                    Thương hiệu sản phẩm
+                </th>
+                <th>
+                    Thao tác
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.brandName)
+    </td>
+    <td>
+        <a class="btn btn-primary fas fa-edit" href="@Url.Action("editbrand", "Brand", new {id = item.brandID })"></a>
+        <a class="btn btn-danger fas fa-times-circle" onclick="return confirmAction()" href="@Url.Action("removebrand", "Brand", new {id = item.brandID })"></a>
+    </td>
+</tr>
+       }
+        </tbody>
+
+
+    </table>
+
+</div>
+
+<script>jQuery(document).ready(function () {
+        $('#mytable').DataTable();
+    });</script>
+
+
+

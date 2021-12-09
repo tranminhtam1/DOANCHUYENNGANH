@@ -10,7 +10,6 @@ C:\Users\tran minh tam\Desktop\new\MyClass\obj\Debug\MyClass.csproj.CoreCompileI
 C:\Users\tran minh tam\Desktop\new\MyClass\obj\Debug\MyClass.csproj.CopyComplete
 C:\Users\tran minh tam\Desktop\new\MyClass\obj\Debug\MyClass.dll
 C:\Users\tran minh tam\Desktop\new\MyClass\obj\Debug\MyClass.pdb
-C:\Users\tran minh tam\Desktop\doanchuyennganh\MyClass\obj\Debug\MyClass.csproj.AssemblyReference.cache
 C:\Users\tran minh tam\Desktop\doanchuyennganh\MyClass\obj\Debug\MyClass.csproj.CoreCompileInputs.cache
 C:\Users\tran minh tam\Desktop\doanchuyennganh\MyClass\obj\Debug\MyClass.dll
 C:\Users\tran minh tam\Desktop\doanchuyennganh\MyClass\obj\Debug\MyClass.pdb
